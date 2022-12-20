@@ -151,6 +151,57 @@ void RealeseSpiralArray (int [,] array)
 }
 }
 
+void FillMatrix (int [,,] array, int[] size)
+{
+    for (int k = 0; k < array.GetLength(2); k++)
+    {
+        for (int row = 0; row < array.GetLength(0); row ++)
+        {
+            for (int i = 0; i < array.GetLength(1); i++)
+            {
+                array[row, i, k] = new Random().Next(1, 100);
+            }
+        }
+    }
+}
+
+void RealeseCheckMatrix (int[,,]array, int [] size)
+{
+    for (int k = 0; k < array.GetLength(2); k++)
+    {
+        for (int row = 0; row < array.GetLength(0); row ++)
+        {
+            for (int i = 0; i < array.GetLength(1); i ++)
+            {
+                int check = 0;
+                while (check != i)
+                {
+                    if (array[row, i, k] == array[row,(check+1)%size[1], k])
+                    {
+                        array[row, i, k] = new Random().Next(1, 100);
+                        check ++;
+                    }
+                }
+            }
+        }
+    }
+
+    for (int k = 0; k < array.GetLength(2); k++) 
+    {
+        for (int row = 0; row < array.GetLength(0); row ++)
+        {
+            for (int i = 0; i < array.GetLength(1); i++)
+            {
+                Console.Write($"{array[row, i, k]} [{row}, {i}, {k}] ");
+            }
+        }
+        Console.WriteLine();
+    }
+    
+}
+
+
+
 Console.Write("Выберите задачу: 54, 56, 58, 60, 62: ");
 int choice = Convert.ToInt32(Console.ReadLine());
 
@@ -200,6 +251,14 @@ else if (choice == 62)
     
 }
 
+else if (choice == 60)
+{
+    Console.Write("Введите размер матрицы через пробел: ");
+    int [] size = Console.ReadLine().Split(" ").Select(x => int.Parse(x)).ToArray();
+    int [,,] array = new int[size[0], size[1], size[2]];
+    FillMatrix(array, size);
+    RealeseCheckMatrix(array, size);
+}
 
 /* void RealeseSpiralArray(int[,] array)
 {
