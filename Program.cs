@@ -102,11 +102,7 @@ void SpiralArray (int [,] array, int [] size)
                 
             }
         }
-            else 
-            { 
-                break;
-            }
-            
+           
             skipRow ++;
             if (temp != size[0]*size[1])
         {
@@ -118,12 +114,8 @@ void SpiralArray (int [,] array, int [] size)
                 
             }
         }
-            else 
-            { 
-                break;
-            }
-        
-                skipRightIndex ++;
+            
+    skipRightIndex ++;
             if (temp != size[0]*size[1])
         {
                     for (int index = array.GetLength(1) - skipRightIndex; index >= skipLeftIndex; index --)
@@ -133,10 +125,7 @@ void SpiralArray (int [,] array, int [] size)
                         
                     }
         }
-            else 
-            { 
-                break;
-            }
+           
                     skipLeftIndex ++;
                     if (temp != size[0]*size[1])
         {
