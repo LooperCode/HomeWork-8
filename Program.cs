@@ -86,6 +86,94 @@ void LinearProduct (int [,] firstArray, int[,] secondArray, int [] size)
     
 }
 
+void SpiralArray (int [,] array, int [] size)
+{
+     
+    int skipRow = 0; int skipRightIndex = 1; int skipLeftIndex = 0; int temp = 0;
+    while (temp != (size[0] * size[1]))
+    {
+        if (temp != size[0]*size[1])
+        {
+
+            for (int index = 0 + skipRow; index < array.GetLength(1)- skipLeftIndex; index ++)
+            {
+                temp ++;
+                array[skipRow, index] = temp;   
+                
+            }
+        }
+            else 
+            { 
+                break;
+            }
+            
+            skipRow ++;
+            if (temp != size[0]*size[1])
+        {
+                for (int column = 0 + skipRow; column < array.GetLength(0) - skipLeftIndex; column ++)
+            {   
+                int index = array.GetLength(1) - skipRightIndex;
+                temp ++;
+                array[column, index] = temp;    
+                
+            }
+        }
+            else 
+            { 
+                break;
+            }
+        
+                skipRightIndex ++;
+            if (temp != size[0]*size[1])
+        {
+                    for (int index = array.GetLength(1) - skipRightIndex; index >= skipLeftIndex; index --)
+                    {
+                        temp ++;
+                        array[array.GetLength(0)-skipRow, index] = temp;     
+                        
+                    }
+        }
+            else 
+            { 
+                break;
+            }
+                    skipLeftIndex ++;
+                    if (temp != size[0]*size[1])
+        {
+                        for (int column = array.GetLength(0) - skipRightIndex; column >= skipRow; column --)
+                        {
+                            int index = skipLeftIndex - 1;
+                            temp ++;
+                            array[column, index] = temp;     
+                            
+                        }
+        }
+            
+         
+    }
+                            
+}
+
+void RealeseSpiralArray (int [,] array)
+{
+    for (int row = 0; row < array.GetLength(0); row ++)
+    {
+        for (int i = 0; i < array.GetLength(1); i++)
+        if (array[row, i]<10)
+        {
+        {
+            Console.Write($"{array[row, i]}  ");
+        }
+        
+        }
+        else 
+        {
+            Console.Write($"{array[row, i]} ");
+        }
+        Console.WriteLine();
+}
+}
+
 Console.Write("Выберите задачу: 54, 56, 58, 60, 62: ");
 int choice = Convert.ToInt32(Console.ReadLine());
 
@@ -124,4 +212,13 @@ else if (choice == 58)
 
 }
 
-
+else if (choice == 62)
+{
+    Console.Write("Введите размер матрицы через пробел: ");
+    int [] size = Console.ReadLine().Split(" ").Select(x => int.Parse(x)).ToArray();
+    int [,] array = new int[size[0], size[1]];
+    SpiralArray(array, size);
+    Console.WriteLine();
+    RealeseSpiralArray(array);
+    
+}
