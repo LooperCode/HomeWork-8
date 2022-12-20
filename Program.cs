@@ -92,20 +92,16 @@ void SpiralArray (int [,] array, int [] size)
     int skipRow = 0; int skipRightIndex = 1; int skipLeftIndex = 0; int temp = 0;
     while (temp != (size[0] * size[1]))
     {
-        if (temp != size[0]*size[1])
-        {
-
-            for (int index = 0 + skipRow; index < array.GetLength(1)- skipLeftIndex; index ++)
+        for (int index = 0 + skipRow; index < array.GetLength(1)- skipLeftIndex; index ++)
             {
                 temp ++;
                 array[skipRow, index] = temp;   
                 
             }
-        }
+        
            
             skipRow ++;
-            if (temp != size[0]*size[1])
-        {
+         
                 for (int column = 0 + skipRow; column < array.GetLength(0) - skipLeftIndex; column ++)
             {   
                 int index = array.GetLength(1) - skipRightIndex;
@@ -113,22 +109,18 @@ void SpiralArray (int [,] array, int [] size)
                 array[column, index] = temp;    
                 
             }
-        }
+        
+            skipRightIndex ++;
             
-    skipRightIndex ++;
-            if (temp != size[0]*size[1])
-        {
                     for (int index = array.GetLength(1) - skipRightIndex; index >= skipLeftIndex; index --)
                     {
                         temp ++;
                         array[array.GetLength(0)-skipRow, index] = temp;     
                         
                     }
-        }
-           
-                    skipLeftIndex ++;
-                    if (temp != size[0]*size[1])
-        {
+        
+            skipLeftIndex ++;
+          
                         for (int column = array.GetLength(0) - skipRightIndex; column >= skipRow; column --)
                         {
                             int index = skipLeftIndex - 1;
@@ -136,11 +128,7 @@ void SpiralArray (int [,] array, int [] size)
                             array[column, index] = temp;     
                             
                         }
-        }
-            
-         
-    }
-                            
+    }   
 }
 
 void RealeseSpiralArray (int [,] array)
@@ -211,3 +199,52 @@ else if (choice == 62)
     RealeseSpiralArray(array);
     
 }
+
+
+/* void RealeseSpiralArray(int[,] array)
+{
+    for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+            if (array[i, j] / 10 <= 0)
+                Console.Write($" {array[i, j]} ");
+            else Console.Write($"{array[i, j]} ");
+        }
+        Console.WriteLine();
+    }
+}
+void SpiralArray(int[,] array)
+{
+    int temp = 1;
+    int i = 0;
+    int j = 0;
+
+    while (temp <= array.GetLength(0) * array.GetLength(1))
+    {
+        array[i, j] = temp;
+        temp++;
+        if (i <= j + 1 && i + j < array.GetLength(1) - 1)
+        {
+          j++;
+        }   
+        else if (i < j && i + j >= array.GetLength(0) - 1)
+        {
+           i++;
+        }         
+        else if (i >= j && i + j > array.GetLength(1) - 1)
+        {
+           j--;
+        }           
+        else
+        {
+           i--;
+        }     
+    }
+
+    RealeseSpiralArray(array);
+}
+int size = 5;
+int[,] array = new int[size, size];
+SpiralArray(array);
+*/
